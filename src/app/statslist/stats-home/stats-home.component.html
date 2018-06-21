@@ -1,7 +1,10 @@
-<all-stats fxLayout="row"
-           [project]="allStats$ | async">
-</all-stats>
-<project-stats fxLayout="row"
-               *ngFor="let project of (projects$ | async)"
-               [project]="project"
-></project-stats>
+<div fxLayout="column" fxFill>
+  <all-stats fxLayout="row"
+             [project]="allStats$ | async"
+             [noProjects]="(projects$ | async)?.length">
+  </all-stats>
+  <project-stats fxLayout="row"
+                 *ngFor="let project of (projects$ | async)"
+                 [project]="project"
+  ></project-stats>
+</div>

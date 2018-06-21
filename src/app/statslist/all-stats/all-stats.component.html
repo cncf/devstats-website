@@ -1,10 +1,29 @@
-<div *ngIf="project">
-  <div class="chart-area">
+<div *ngIf="project" fxLayout="column" fxFlexFill>
+  <h2 fxLayout="row">Devstats</h2>
+  <div class="totals" fxLayout="row">
+    <div class="total-col" fxLayout="column">
+      <h5># Projects</h5>
+      {{noProjects}}
+    </div>
+    <div class="total-col" fxLayout="column">
+      <h5># Comments</h5>
+      {{project?.stats?.activityTotals?.week?.discussion}}
+    </div>
+    <div class="total-col" fxLayout="column">
+      <h5># Commits</h5>
+      {{project?.stats?.activityTotals?.week?.commits}}
+    </div>
+    <div class="total-col" fxLayout="column">
+      <h5># Stars</h5>
+      {{project?.stats?.activityTotals?.week?.stars}}
+    </div>
+  </div>
+  <div class="chart-area" fxLayout="row">
     <ngx-charts-line-chart
       *ngIf="stats"
       [results]="stats"
       [gradient]="true"
-      [xAxis]="false"
+      [xAxis]="true"
       [tooltipDisabled]="true"
       [yAxis]="false"
       [curve]="curve"

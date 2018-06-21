@@ -11,11 +11,13 @@ import { StatsListEffects } from './state';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatCardModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
     HttpClientModule,
     CommonModule,
+    FlexLayoutModule,
     StoreModule.forFeature('statsList', fromStatsList.reducer),
     EffectsModule.forFeature([StatsListEffects]),
     NgxChartsModule,

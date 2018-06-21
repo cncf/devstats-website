@@ -1,5 +1,6 @@
 :host{
-  display: block;
+  display: flex;
+  margin-bottom: 25px;
 }
 
 .chart-area {
@@ -7,3 +8,6 @@
   height: 300px;
 }
 
+.total-col {
+  padding: 10px;
+}

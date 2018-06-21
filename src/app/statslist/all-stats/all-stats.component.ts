@@ -9,6 +9,7 @@ import * as d3 from 'd3-shape';
 })
 export class AllStatsComponent implements OnChanges {
   @Input() project: Project;
+  @Input() noProjects: number;
   @Input() unit = 'days';
   stats: Series[];
   curve = d3.curveLinear;

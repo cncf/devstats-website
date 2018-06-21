@@ -1,8 +1,4 @@
-<div *ngIf="project">
-
-
-
-<mat-card class="example-card">
+<mat-card *ngIf="project" fxLayout="column" fxFlexFill>
   <mat-card-header>
     <div mat-card-avatar class="example-header-image">
       <img [src]="project.dashboardUrl + '/public/img/grafana_icon.svg'">
@@ -32,4 +28,4 @@
   <mat-card-actions>
   </mat-card-actions>
 </mat-card>
-</div>
+

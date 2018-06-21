@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { reducer, metaReducers } from './reducers';
+import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { STATS_CLIENT_CONFIG } from './statslist/stats-client/config';
@@ -24,7 +24,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     AppRoutingModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot(reducer, {metaReducers}),
+    StoreModule.forRoot(reducers, {metaReducers}),
     EffectsModule.forRoot([AppEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
