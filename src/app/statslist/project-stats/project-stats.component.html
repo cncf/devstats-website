@@ -1,3 +1,35 @@
-<p>
-  project-stats works!
-</p>
+<div *ngIf="project">
+
+
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image">
+      <img [src]="project.dashboardUrl + '/public/img/grafana_icon.svg'">
+    </div>
+    <span>{{project.name}}</span>
+  </mat-card-header>
+  <div class="chart-area">
+    <ngx-charts-line-chart
+      *ngIf="stats"
+      [results]="stats"
+      [gradient]="true"
+      [xAxis]="false"
+      [tooltipDisabled]="true"
+      [yAxis]="false"
+      [curve]="curve"
+      [legend]="false"
+      [showXAxisLabel]="false"
+      [showYAxisLabel]="false"
+      [yScaleMin]="0"
+      [showGridLines]="false"
+    >
+    </ngx-charts-line-chart>
+  </div>
+  <mat-card-content>
+
+  </mat-card-content>
+  <mat-card-actions>
+  </mat-card-actions>
+</mat-card>
+</div>

@@ -1,13 +1,7 @@
-<ngx-charts-line-chart *ngIf="multi"
-  [view]="view"
-  [results]="multi"
-  [gradient]="gradient"
-  [xAxis]="showXAxis"
-  [yAxis]="showYAxis"
-  [legend]="showLegend"
-  [showXAxisLabel]="showXAxisLabel"
-  [showYAxisLabel]="showYAxisLabel"
-  [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel"
-  [autoScale]="autoScale">
-</ngx-charts-line-chart>
+<all-stats fxLayout="row"
+           [project]="allStats$ | async">
+</all-stats>
+<project-stats fxLayout="row"
+               *ngFor="let project of (projects$ | async)"
+               [project]="project"
+></project-stats>

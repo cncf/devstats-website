@@ -3,9 +3,10 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
 import { AppEffects } from './app.effects';
+import { of } from 'rxjs/internal/observable/of';
 
 describe('AppService', () => {
-  let actions$: Observable<any>;
+  const actions$: Observable<any> = of([]);
   let effects: AppEffects;
 
   beforeEach(() => {

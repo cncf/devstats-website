@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StatsService } from '../state/stats.service';
-import { map, filter } from 'rxjs/operators';
-import { tupleToSeries } from '../stats-transformer';
+import { Observable } from 'rxjs/index';
+import { Project } from '../stats-client/models/Project';
 
 @Component({
   selector: 'stats-home',
@@ -10,29 +10,10 @@ import { tupleToSeries } from '../stats-transformer';
 })
 export class StatsHomeComponent implements OnInit {
 
-  multi: any[];
+  projects$: Observable<Project[]> = this.service.getProjects();
+  allStats$: Observable<Project> = this.service.getAllStats();
 
-  view: any[] = [700, 400];
-
-  // options
-  showXAxis = true;
-  showYAxis = true;
-  gradient = false;
-  showLegend = true;
-  showXAxisLabel = true;
-  xAxisLabel = 'Time';
-  showYAxisLabel = true;
-  yAxisLabel = 'Commits';
-
-  constructor(private service: StatsService) {
-
-    this.service.getProjectStats('all').pipe(
-      filter(x=>!!x),
-      map(all => tupleToSeries(all.commitGraph))
-    ).subscribe((data) => {
-      this.multi = data;
-    });
-  }
+  constructor(private service: StatsService) {}
 
   ngOnInit() {
   }

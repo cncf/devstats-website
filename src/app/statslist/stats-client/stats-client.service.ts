@@ -18,16 +18,10 @@ export class StatsClientService {
   projectList(): Observable<Project[]> {
     return this.Http.get<{ projects: Project[] }>(this.config.domain + '/jsons/projects.json').pipe(
       map((ps) => ps.projects)
-    )
+    );
   }
 
   project(name: string): Observable<ProjectStats> {
     return this.Http.get<ProjectStats>(this.config.domain + `/jsons/${name}.json`);
-  }
-
-  allProjects() {
-    this.projectList().pipe(
-
-    )
   }
 }

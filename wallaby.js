@@ -11,7 +11,7 @@ module.exports = function (wallaby) {
 
   var webpackPostprocessor = wallabyWebpack({
     entryPatterns: [
-      'src/wallabyTest.ts',
+      'src/wallabyTest.js',
       'src/**/*spec.js'
     ],
 
@@ -34,7 +34,10 @@ module.exports = function (wallaby) {
         path.join(wallaby.projectCacheDir, 'src/app'),
         path.join(wallaby.projectCacheDir, 'src'),
         'node_modules'
-      ]
+      ],
+      alias: {
+        '@testing': path.join(wallaby.projectCacheDir, 'src/testing'),
+      },
     },
     node: {
       fs: 'empty',
@@ -48,7 +51,7 @@ module.exports = function (wallaby) {
     files: [
       {pattern: 'src/**/*.+(ts|css|less|scss|sass|styl|html|json|svg)', load: false},
       {pattern: 'src/**/*.d.ts', ignore: true},
-      {pattern: 'src/**/*spec.ts', ignore: true}
+      {pattern: 'src/**/*spec.ts', ignore: true},
     ],
 
     tests: [
@@ -66,6 +69,11 @@ module.exports = function (wallaby) {
       var path = require('path');
       app.use('/favicon.ico', express.static(path.join(__dirname, 'src/favicon.ico')));
       app.use('/assets', express.static(path.join(__dirname, 'src/assets')));
+    },
+
+    workers: {
+      initial: 3,
+      regular: 3
     },
 
     env: {

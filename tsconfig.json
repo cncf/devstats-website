@@ -17,12 +17,7 @@
       "dom"
     ],
     "paths": {
-      "statsClient": [
-        "dist/stats-client"
-      ],
-      "statsClient/*": [
-        "dist/stats-client/*"
-      ]
+      "@testing/*": ["src/testing/*"]
     }
   }
 }

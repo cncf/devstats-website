@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   statsClientConfig: {
-    "domain": "https://cncftest.io"
+    'domain': 'https://cncftest.io'
   }
 };
 

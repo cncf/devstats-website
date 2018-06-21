@@ -1,3 +1,19 @@
-<p>
-  all-stats works!
-</p>
+<div *ngIf="project">
+  <div class="chart-area">
+    <ngx-charts-line-chart
+      *ngIf="stats"
+      [results]="stats"
+      [gradient]="true"
+      [xAxis]="false"
+      [tooltipDisabled]="true"
+      [yAxis]="false"
+      [curve]="curve"
+      [legend]="false"
+      [showXAxisLabel]="false"
+      [showYAxisLabel]="false"
+      [yScaleMin]="0"
+      [showGridLines]="false"
+    >
+    </ngx-charts-line-chart>
+  </div>
+</div>

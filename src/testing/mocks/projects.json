@@ -1,0 +1,20 @@
+{
+  "projects": [
+    {
+      "dashboardUrl": "https://k8s.cncftest.io",
+      "dbDumpUrl": "https://cncftest.io/gha.dump",
+      "name": "kubernetes",
+      "repo": "kubernetes/kubernetes",
+      "status": "Graduated",
+      "title": "Kubernetes"
+    },
+    {
+      "dashboardUrl": "https://prometheus.cncftest.io",
+      "dbDumpUrl": "https://cncftest.io/prometheus.dump",
+      "name": "prometheus",
+      "repo": "prometheus/prometheus",
+      "status": "Incubating",
+      "title": "Prometheus"
+    }
+  ]
+}

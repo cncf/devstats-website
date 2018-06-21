@@ -1,12 +1,14 @@
-import { Action } from '@ngrx/store';
 import { StatsListActions, StatsListActionTypes } from './stats-list.actions';
 import { Project } from '../stats-client/models/Project';
+import { TransformedProject } from '../models/TransformedProject';
 
 export interface StatsState {
-  projects?: Project[]
+  projects?: TransformedProject[];
 }
 
-export const initialState: StatsState = {};
+export const initialState: StatsState = {
+  projects: []
+};
 
 export function reducer(state = initialState, action: StatsListActions): StatsState {
   switch (action.type) {

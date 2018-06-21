@@ -10,6 +10,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StatsListEffects } from './state';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MatCardModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     CommonModule,
     StoreModule.forFeature('statsList', fromStatsList.reducer),
     EffectsModule.forFeature([StatsListEffects]),
-    NgxChartsModule
+    NgxChartsModule,
+    MatCardModule
   ],
   providers: [
     StatsClientService

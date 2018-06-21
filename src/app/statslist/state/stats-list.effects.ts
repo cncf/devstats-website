@@ -8,6 +8,7 @@ import { catchError, concatMap, map, switchMap } from 'rxjs/internal/operators';
 import { StatsClientService } from '../stats-client/stats-client.service';
 import { defer, of, } from 'rxjs';
 import { Project } from '../stats-client/models/Project';
+import { statsTransformer } from '../helpers/stats-transformer';
 
 @Injectable()
 export class StatsListEffects {
@@ -17,13 +18,14 @@ export class StatsListEffects {
     switchMap(() => {
       return this.statsService.projectList().pipe(
         switchMap((projects) => {
-          const actions = projects.map((project: Project) => new LoadProjectStats(project.name));
-          return of(...[new LoadedProjects(projects), new LoadProjectStats('all')]);
+          const actions = projects.filter(p => p.name !== 'all')
+            .map((project: Project) => new LoadProjectStats(project.name));
+          return of(...[new LoadedProjects(projects), new LoadProjectStats('all'), ...actions]);
         }),
         catchError((e) => {
-          return of(new StatsListError(e, StatsListActionTypes.LoadProjects))
+          return of(new StatsListError(e, StatsListActionTypes.LoadProjects));
         })
-      )
+      );
     })
   );
 
@@ -31,13 +33,14 @@ export class StatsListEffects {
   loadStatsOnProject$ = this.actions$.ofType(StatsListActionTypes.LoadProjectStats).pipe(
     concatMap((action: LoadProjectStats) => {
       return this.statsService.project(action.projectName).pipe(
+        statsTransformer,
         map((stats) => {
-          return new LoadedProjectStats(action.projectName, stats)
+          return new LoadedProjectStats(action.projectName, stats);
         }),
         catchError((e) => {
-          return of(new StatsListError(e, StatsListActionTypes.LoadProjectStats))
+          return of(new StatsListError(e, StatsListActionTypes.LoadProjectStats));
         })
-      )
+      );
     })
   );
 

@@ -4,9 +4,10 @@ import { Observable } from 'rxjs';
 
 import { StatsListEffects } from './stats-list.effects';
 import { StatsClientService } from '../stats-client/stats-client.service';
+import { of } from 'rxjs/internal/observable/of';
 
 describe('StatsListService', () => {
-  let actions$: Observable<any>;
+  const actions$: Observable<any> = of([]);
   let effects: StatsListEffects;
 
   beforeEach(() => {
