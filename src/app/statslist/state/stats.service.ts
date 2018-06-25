@@ -22,6 +22,10 @@ export const allSelector = createSelector(featureSelector, (stats) => {
   return stats.projects.find(p => p.name === 'all');
 });
 
+export const shownProject = createSelector(featureSelector, (stats) => {
+  return stats.shownProject;
+});
+
 @Injectable({
   providedIn: 'root'
 })
@@ -29,10 +33,9 @@ export class StatsService {
   constructor(private store: Store<{ statsList: StatsState }>) {
   }
 
-  public getProjectStats(projectName: string): Observable<ProjectStats> {
-    const ps = projectStatsSelector(projectName);
+  public getShownProject(): Observable<string> {
     return this.store
-      .select(s => ps(s));
+      .select(shownProject);
   }
 
   public getProjects(): Observable<Project[]> {

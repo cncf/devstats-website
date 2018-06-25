@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, HostBinding, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Project } from '../stats-client/models/Project';
 import * as d3 from 'd3-shape';
 import { Series } from '../helpers/stats-transformer';
@@ -9,13 +9,17 @@ import { Series } from '../helpers/stats-transformer';
   styleUrls: ['./project-stats.component.scss']
 })
 export class ProjectStatsComponent implements OnChanges {
-
+  @HostBinding('class.open') get openClass() {
+    return this.open;
+  }
   @Input() project: Project;
   @Input() unit = 'days';
+  @Input() open = false;
   stats: Series[];
-  curve = d3.curveLinear;
+  curve = d3.curveCatmullRom;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.project && changes.project.currentValue) {

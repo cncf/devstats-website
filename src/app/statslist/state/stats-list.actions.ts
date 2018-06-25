@@ -7,7 +7,8 @@ export enum StatsListActionTypes {
   LoadedProjects = '[StatsList] Loaded Projects',
   StatsListError = '[StatsList] Error',
   LoadProjectStats = '[StatsList] Load Project Stats',
-  LoadedProjectStats = '[StatsList] Loaded Project Stats'
+  LoadedProjectStats = '[StatsList] Loaded Project Stats',
+  ShowProject = '[StatsList] Show Project'
 }
 
 export class LoadProjects implements Action {
@@ -45,4 +46,17 @@ export class LoadedProjectStats implements Action {
   }
 }
 
-export type StatsListActions = LoadProjects | LoadedProjects | StatsListError | LoadProjectStats | LoadedProjectStats;
+export class ShowProject implements Action {
+  readonly type = StatsListActionTypes.ShowProject;
+
+  constructor(public projectName: string) {
+  }
+}
+
+export type StatsListActions =
+  LoadProjects
+  | LoadedProjects
+  | StatsListError
+  | LoadProjectStats
+  | LoadedProjectStats
+  | ShowProject;

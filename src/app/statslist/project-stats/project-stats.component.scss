@@ -1,8 +1,32 @@
-:host{
+:host {
   display: block;
+  height: 100px;
+}
+:host.open {
+  height: 300px;
+}
+
+.logo{
+}
+
+.notary, .tuf, .containerd, .opencontainers {
+  filter:  invert(100%);
+}
+
+.chart-wrapper {
+
 }
 
 .chart-area {
-  width: 30%;
-  height: 100px;
+  width: 100%;
+  margin: 10px 0px;
+  height: 80px;
+}
+
+.hidden{
+  height: 0px;
+  visibility: hidden;
+}
+.more-info{
+  text-align: right;
 }

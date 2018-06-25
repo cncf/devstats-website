@@ -1,14 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import {
-  LoadedProjects, LoadedProjectStats, LoadProjects, LoadProjectStats, StatsListActions, StatsListActionTypes,
+  LoadedProjects,
+  LoadedProjectStats,
+  LoadProjects,
+  LoadProjectStats,
+  ShowProject,
+  StatsListActions,
+  StatsListActionTypes,
   StatsListError
 } from './stats-list.actions';
-import { catchError, concatMap, map, switchMap } from 'rxjs/internal/operators';
+import { catchError, concatMap, map, switchMap, tap } from 'rxjs/internal/operators';
 import { StatsClientService } from '../stats-client/stats-client.service';
 import { defer, of, } from 'rxjs';
 import { Project } from '../stats-client/models/Project';
 import { statsTransformer } from '../helpers/stats-transformer';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class StatsListEffects {
@@ -44,11 +52,21 @@ export class StatsListEffects {
     })
   );
 
+  @Effect({dispatch: false})
+  routeToProjectFragment$ = this.actions$.ofType(StatsListActionTypes.ShowProject)
+    .pipe(
+      tap((action: ShowProject) => {
+      })
+    );
+
   @Effect()
   init$ = defer(() => {
     return of(new LoadProjects);
   });
 
-  constructor(private actions$: Actions, private statsService: StatsClientService) {
+  constructor(private actions$: Actions,
+              private statsService: StatsClientService,
+              private router: Router
+  ) {
   }
 }

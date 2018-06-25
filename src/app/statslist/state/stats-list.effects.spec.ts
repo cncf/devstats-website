@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { StatsListEffects } from './stats-list.effects';
 import { StatsClientService } from '../stats-client/stats-client.service';
 import { of } from 'rxjs/internal/observable/of';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('StatsListService', () => {
   const actions$: Observable<any> = of([]);
@@ -12,6 +14,9 @@ describe('StatsListService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
       providers: [
         StatsListEffects,
         provideMockActions(() => actions$),

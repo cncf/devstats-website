@@ -1,31 +1,36 @@
 <mat-card *ngIf="project" fxLayout="column" fxFlexFill>
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image">
-      <img [src]="project.dashboardUrl + '/public/img/grafana_icon.svg'">
+  <a name="{{project.name}}" class="hidden"></a>
+  <mat-card-content fxLayout="row" fxLayoutAlign="space-between center" >
+    <div fxLayout="column" class="title-info" fxLayoutAlign="space-between left" fxLayoutGap="20px">
+      <div mat-card-avatar class="logo" ngClass="{{project.name}}">
+        <img [src]="project.dashboardUrl + '/public/img/grafana_icon.svg'">
+      </div>
+      <div class="name">{{project.name}}</div>
     </div>
-    <span>{{project.name}}</span>
-  </mat-card-header>
-  <div class="chart-area">
-    <ngx-charts-line-chart
-      *ngIf="stats"
-      [results]="stats"
-      [gradient]="true"
-      [xAxis]="false"
-      [tooltipDisabled]="true"
-      [yAxis]="false"
-      [curve]="curve"
-      [legend]="false"
-      [showXAxisLabel]="false"
-      [showYAxisLabel]="false"
-      [yScaleMin]="0"
-      [showGridLines]="false"
-    >
-    </ngx-charts-line-chart>
-  </div>
-  <mat-card-content>
-
+    <div fxLayout="column" fxFlex="60" fxFlexAlign="center">
+      <div class="chart-area">
+        <ngx-charts-line-chart
+          *ngIf="stats"
+          [results]="stats"
+          [gradient]="true"
+          [xAxis]="false"
+          [tooltipDisabled]="true"
+          [yAxis]="false"
+          [curve]="curve"
+          [legend]="false"
+          [showXAxisLabel]="false"
+          [showYAxisLabel]="false"
+          [yScaleMin]="0"
+          [showGridLines]="false"
+        >
+        </ngx-charts-line-chart>
+      </div>
+    </div>
+    <div fxFlex="column" fxFlex="nogrow" class="more-info">
+      <div class="line stars">star: {{project?.stats?.stars}}</div>
+      <div class="line issues">issue: {{project?.stats?.openIssues}}</div>
+      <div class="line version">tag: {{project?.stats?.latestVersion}}</div>
+    </div>
   </mat-card-content>
-  <mat-card-actions>
-  </mat-card-actions>
 </mat-card>
 

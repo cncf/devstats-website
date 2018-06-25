@@ -3,6 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProjectStatsComponent } from './project-stats.component';
 import { NO_ERRORS_SCHEMA, SimpleChange } from '@angular/core';
 import * as projectJSON from '@testing/mocks/transformed-project.json';
+import { By } from '@angular/platform-browser';
+
 const project = projectJSON as any;
 
 describe('ProjectStatsComponent', () => {
@@ -36,5 +38,17 @@ describe('ProjectStatsComponent', () => {
     });
     fixture.detectChanges();
     expect(component.stats).toBeTruthy();
+  });
+
+  it('should show a graph when stats are threr', () => {
+    let graph = fixture.debugElement.query(By.css('ngx-charts-line-chart'));
+    expect(graph).toBeFalsy();
+    component.project = project;
+    component.ngOnChanges({
+      project: new SimpleChange(null, project, true)
+    });
+    fixture.detectChanges();
+    graph = fixture.debugElement.query(By.css('ngx-charts-line-chart'));
+    expect(graph).toBeTruthy();
   });
 });

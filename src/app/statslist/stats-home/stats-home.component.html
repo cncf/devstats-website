@@ -1,10 +1,13 @@
-<div fxLayout="column" fxFill>
+<div fxLayout="column" fxFill fxLayoutGap="25px">
   <all-stats fxLayout="row"
              [project]="allStats$ | async"
              [noProjects]="(projects$ | async)?.length">
   </all-stats>
-  <project-stats fxLayout="row"
-                 *ngFor="let project of (projects$ | async)"
-                 [project]="project"
+  <project-stats
+    fxLayout="row"
+    *ngFor="let project of (projects$ | async)"
+    [project]="project"
+    [open]="shown === project.name"
+    (click)="showProject(project.name)"
   ></project-stats>
 </div>

@@ -12,7 +12,7 @@ export class AllStatsComponent implements OnChanges {
   @Input() noProjects: number;
   @Input() unit = 'days';
   stats: Series[];
-  curve = d3.curveLinear;
+  curve = d3.curveCatmullRom;
 
   constructor() { }
 

@@ -4,10 +4,12 @@ import { TransformedProject } from '../models/TransformedProject';
 
 export interface StatsState {
   projects?: TransformedProject[];
+  shownProject: string;
 }
 
 export const initialState: StatsState = {
-  projects: []
+  projects: [],
+  shownProject: null
 };
 
 export function reducer(state = initialState, action: StatsListActions): StatsState {
@@ -26,6 +28,10 @@ export function reducer(state = initialState, action: StatsListActions): StatsSt
         return p;
       });
       return {...state, projects};
+    }
+
+    case StatsListActionTypes.ShowProject: {
+      return {...state, shownProject: action.projectName};
     }
 
     default:
