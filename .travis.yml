@@ -3,8 +3,13 @@ node_js:
    - node # will use latest node
 before_script: # commands to run before the build step
    - npm install -g --silent @angular/cli
+install:
+- npm ci
+# keep the npm cache around to speed up installs
+cache:
+  directories:
+  - "$HOME/.npm"
 script: # the build step
-   - npm install
    - ng lint
    - ng test --watch=false
    - ng build --prod
