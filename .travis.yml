@@ -9,6 +9,9 @@ install:
 cache:
   directories:
   - "$HOME/.npm"
+sudo: required
+addons:
+  chrome: stable
 script: # the build step
    - ng lint
    - ng test --watch=false
