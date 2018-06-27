@@ -3,7 +3,7 @@ ID = "Your_Site_ID"
 [build]
   base    = ""
   publish = "dist/devstats-app"
-  command = "ng build --prod  --c $ENV"
+  command = "ng test && ng build --prod  --c $ENV"
 [context.production]
   environment = { ENV = "prod" }
 [context.deploy-preview]
