@@ -1,0 +1,14 @@
+[Settings]
+ID = "Your_Site_ID"
+[build]
+  base    = ""
+  publish = "dist/devstats-app"
+  command = "ng build --prod  --c $ENV"
+[context.production]
+  environment = { ENV = "prod" }
+[context.deploy-preview]
+  environment = { ENV = "" }
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
