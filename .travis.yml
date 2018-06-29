@@ -13,10 +13,19 @@ cache:
 sudo: required
 addons:
   chrome: stable
-script: # the build step
-   - ng lint
-   - ng test --watch=false
-   - ng build --prod
+jobs:
+  include:
+    - stage: lint
+      scripts:
+        - ng lint
+    - stage: test
+      scripts:
+        - ng test --watch=false
+        - ng build --aot=
+    - stage: deploy
+      if: branch = master
+      scripts:
+        - curl -X POST -d '' https://api.netlify.com/build_hooks/5b35b4a3fdd72a5a0d0fee71
 notifications:
   email: # only receive email when the build status changes (someone broke the build!)
     on_failure: change
