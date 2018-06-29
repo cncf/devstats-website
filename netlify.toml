@@ -5,7 +5,7 @@ ID = "7b34978f-56c0-4f6e-b044-25fd2fb583ce"
   publish = "dist/devstats-app"
   command = "ng build --prod  --c $ENV"
 [context.production]
-  environment = { ENV = "prod" }
+  environment = { ENV = "production" }
 [context.deploy-preview]
   environment = { ENV = "" }
 [[redirects]]
