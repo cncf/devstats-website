@@ -1,9 +1,9 @@
 [Settings]
-ID = "Your_Site_ID"
+ID = "7b34978f-56c0-4f6e-b044-25fd2fb583ce"
 [build]
   base    = ""
   publish = "dist/devstats-app"
-  command = "ng test && ng build --prod  --c $ENV"
+  command = "ng build --prod  --c $ENV"
 [context.production]
   environment = { ENV = "prod" }
 [context.deploy-preview]
