@@ -21,7 +21,7 @@ jobs:
     - stage: test
       scripts:
         - ng test --watch=false
-        - ng build --aot=
+        - ng build --aot=true
     - stage: deploy
       if: branch = master
       scripts:
