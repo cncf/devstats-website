@@ -1,14 +1,10 @@
 # Devstats Website
 
+A visualization tool for developer statistics of CNCF-hosted projects.
 
+# CONTRIBUTING
 
-
-
-
-
-
-
-
+See below to start working with the app.
 
 # Development
 
