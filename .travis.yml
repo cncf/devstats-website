@@ -3,7 +3,6 @@ node_js:
    - node # will use latest node
 before_script: # commands to run before the build step
    - npm install -g --silent @angular/cli
-
 install:
 - npm ci
 # keep the npm cache around to speed up installs
@@ -13,19 +12,14 @@ cache:
 sudo: required
 addons:
   chrome: stable
-jobs:
-  include:
-    - stage: lint
-      scripts:
-        - ng lint
-    - stage: test
-      scripts:
-        - ng test --watch=false
-        - ng build --aot=true
-    - stage: deploy
-      if: branch = master
-      scripts:
-        - curl -X POST -d '' https://api.netlify.com/build_hooks/5b35b4a3fdd72a5a0d0fee71
+script:
+- ng lint
+- ng test --watch=false
+- ng build --aot=true
+deploy:
+  provider: script
+  script: curl -X POST -d '' https://api.netlify.com/build_hooks/5b35b4a3fdd72a5a0d0fee71
+  on: master
 notifications:
   email: # only receive email when the build status changes (someone broke the build!)
     on_failure: change
